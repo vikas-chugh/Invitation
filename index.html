@@ -1,0 +1,1282 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="only light" />
+    <meta name="theme-color" content="#f4dcb5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Vikas &amp; Sanjana · Wedding Invitation</title>
+    <meta name="description" content="Sagan, Mehndi and Wedding · 24th to 26th November 2026 · New Delhi" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Italianno&family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== PREMIUM PUNJABI WEDDING THEME ===== */
+        :root {
+            --color-envelope: #8b1e24;
+            --color-envelope-inner: #fff7e7;
+            --color-envelope-shade: #5c0f13;
+            --color-thread: #a83d38;
+            --page-bg: #fae6c3;
+            --ink: #321311;
+            --gold: #ad7c2b;
+            --gold-light: #f5dc85;
+            --muted: #6b4c4c;
+            --card-bg: rgba(255, 250, 237, .94);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            background: radial-gradient(ellipse at 15% 5%, #f6ddaf55, transparent 40%), var(--page-bg);
+            color: var(--ink);
+            font-family: "Playfair Display", serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.lock-scroll { overflow: hidden; height: 100vh; }
+
+        /* ================= ENVELOPE SCREEN ================= */
+        #envelope-screen {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 30%, #fffaf0 0%, #f6e4c3 65%, #e9cda0 100%);
+            z-index: 1000;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            overflow: hidden;
+            isolation: isolate;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #envelope-screen.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        #envelope-screen::before {
+            content: "✦  ❧  ✿  ❧  ✦";
+            position: absolute;
+            left: 50%;
+            top: 7%;
+            transform: translateX(-50%);
+            width: 100%;
+            color: #b8884470;
+            text-align: center;
+            letter-spacing: .9em;
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: ornamentGlow 5s ease-in-out infinite;
+        }
+        #envelope-screen::after {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px solid #bd914899;
+            box-shadow: inset 0 0 35px #bd914812;
+            animation: frameGlow 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes frameGlow {
+            0%, 100% { box-shadow: inset 0 0 15px #bd914810; }
+            50%      { box-shadow: inset 0 0 40px #bd91482e; }
+        }
+
+        .envelope-scene {
+            width: min(90vw, 360px);
+            text-align: center;
+            position: relative;
+            perspective: 1100px;
+            animation: sceneArrive 1s cubic-bezier(.2,.75,.25,1) both;
+        }
+
+        @keyframes sceneArrive {
+            from { opacity: 0; transform: translateY(25px) scale(.96); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes ornamentGlow {
+            0%, 100% { opacity: .65; }
+            50% { opacity: 1; }
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1.48;
+            background: linear-gradient(145deg, #eacba5, #d5a576);
+            border: 1px solid #bd9148;
+            border-radius: 9px;
+            cursor: pointer;
+            box-shadow: 0 28px 50px #613b2638, 0 8px 20px #613b2618, inset 0 1px 0 #fff7d8;
+            transform-style: preserve-3d;
+            isolation: isolate;
+            transition: transform 0.4s ease, filter .4s ease;
+            padding: 0;
+            animation: envelopeFloat 4.5s ease-in-out infinite;
+        }
+        .envelope:not(.opened):hover { filter: brightness(1.045); }
+        @keyframes envelopeFloat {
+            0%, 100% { translate: 0 0; }
+            50% { translate: 0 -7px; }
+        }
+
+        .envelope::before {
+            content: "";
+            position: absolute;
+            inset: 3px;
+            border: 1px solid #fff1ca99;
+            border-radius: 6px;
+            pointer-events: none;
+            z-index: 7;
+        }
+        .envelope::after {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            border: 1px dashed #923931a8;
+            border-radius: 5px;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .envelope-back {
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .envelope-back svg { width: 100%; height: 100%; display: block; }
+        .envelope-back svg rect { fill: #bd8c5d !important; }
+
+        .envelope-pocket {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+        }
+        .envelope-pocket svg { width: 100%; height: 100%; display: block; }
+        .envelope-pocket svg path:nth-child(1) { fill: #d7b184 !important; }
+        .envelope-pocket svg path:nth-child(2) { fill: #cda374 !important; }
+        .envelope-pocket svg path:nth-child(3) { fill: #e4bc8c !important; }
+
+        .envelope-letter {
+            position: absolute;
+            z-index: 2;
+            top: 7%;
+            left: 7%;
+            right: 7%;
+            height: 87%;
+            border: 1px solid #d7b777;
+            background: radial-gradient(ellipse at top, #fffdf5, #fbf0d8);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            padding: 10px;
+            color: var(--ink);
+            text-align: center;
+            box-shadow: 0 3px 8px #59331b22;
+            transition: transform 1s cubic-bezier(.2,.8,.2,1), box-shadow .8s ease;
+        }
+        .letter-flower { color: var(--gold); font-size: 1.15rem; }
+        .letter-kicker { font-family: "Cinzel", serif; font-size: .55rem; text-transform: uppercase; letter-spacing: .13em; }
+        .letter-names { font-family: "Italianno", cursive; font-size: clamp(1.7rem, 7vw, 2.4rem); line-height: 1.1; color: var(--color-envelope); }
+        .letter-date { font-family: "Cinzel", serif; font-size: .52rem; letter-spacing: .08em; }
+
+        .envelope-flap-wrap {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 64%;
+            z-index: 4;
+            transform-origin: top center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .envelope.opened .envelope-flap-wrap { transform: rotateX(180deg); z-index: 0; }
+        .envelope.opened { animation: envelopeOpeningSettle .85s ease both; }
+        @keyframes envelopeOpeningSettle {
+            0%   { transform: scale(1) translateY(0); }
+            35%  { transform: scale(1.035) translateY(3px); }
+            100% { transform: scale(1) translateY(0); }
+        }
+        .envelope.opened .envelope-letter {
+            transform: translateY(-65%) scale(1.035);
+            z-index: 5;
+            box-shadow: 0 12px 24px #59331b30;
+        }
+        .envelope.opened .wax-seal {
+            opacity: 0;
+            transform: translateX(-50%) scale(.6) rotate(-20deg);
+            transition: opacity .35s ease, transform .45s ease;
+        }
+
+        .envelope-flap {
+            position: relative;
+            width: 100%; height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .flap-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+        }
+        .flap-front svg { width: 100%; height: 100%; display: block; }
+        .flap-front svg path { fill: #ecd0a7 !important; }
+        .flap-inside { transform: rotateX(180deg); }
+        .flap-inside svg { width: 100%; height: 100%; display: block; }
+        .flap-inside svg path { fill: #bd8c5d !important; }
+
+        .wax-seal {
+            position: absolute;
+            bottom: 15px; left: 50%;
+            transform: translateX(-50%);
+            width: 56px; height: 56px;
+            background: radial-gradient(circle at 35% 30%, #fff0b2, #d6aa48 55%, #916525);
+            border-radius: 50%;
+            border: 3px ridge #f3dc93;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            z-index: 5;
+            animation: sealGlow 3s ease-in-out infinite;
+            transition: opacity .35s ease, transform .45s ease;
+        }
+        @keyframes sealGlow {
+            0%, 100% { box-shadow: 0 4px 12px #0005, 0 0 0 0 #d8ac4855; }
+            50%      { box-shadow: 0 5px 16px #0005, 0 0 0 7px #d8ac4820; }
+        }
+        .wax-seal svg { width: 32px; height: 32px; color: #53370a; }
+
+        .envelope-text { margin-top: 24px; color: #754a33; }
+        .envelope-pretext { font-family: "Cinzel", serif; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 6px; }
+        .envelope-caption { font-family: "Italianno", cursive; font-size: 2.4rem; margin: 0 0 6px; color: var(--color-envelope); text-shadow: 0 1px #ffffffa8; }
+        .envelope-hint { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.8; animation: hintPulse 2.2s ease-in-out infinite; }
+
+        @keyframes hintPulse {
+            0%, 100% { opacity: .55; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-2px); }
+        }
+
+        /* ================= MAIN INVITATION PAGE ================= */
+        main { display: block; }
+
+        .chapter {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            text-align: center;
+            overflow: hidden;
+            isolation: isolate;
+            scroll-margin-top: 16px;
+            background-size: 160% 160%;
+            animation: festiveAtmosphere 24s ease-in-out infinite alternate;
+        }
+        @keyframes festiveAtmosphere {
+            0%   { background-position: 0% 15%; }
+            50%  { background-position: 60% 55%; }
+            100% { background-position: 100% 85%; }
+        }
+        .chapter::before,
+        .chapter::after {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+            font-family: Georgia, serif;
+            line-height: 1;
+            opacity: .14;
+            animation: floralDrift 12s ease-in-out infinite;
+            transform-origin: center;
+            text-shadow: 0 0 24px #bd914825;
+        }
+        .chapter::before {
+            content: "✿";
+            top: 3%;
+            left: -24px;
+            font-size: clamp(7rem, 18vw, 15rem);
+            color: var(--gold);
+        }
+        .chapter::after {
+            content: "❧";
+            bottom: 3%;
+            right: -15px;
+            font-size: clamp(8rem, 20vw, 17rem);
+            color: var(--gold);
+            animation: floralDrift 15s ease-in-out infinite reverse;
+        }
+        @keyframes floralDrift {
+            0%, 100% { transform: translateY(0) rotate(-7deg); }
+            50%      { transform: translateY(-14px) rotate(7deg); }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: radial-gradient(ellipse at 50% 30%, #fff4cf, transparent 55%), linear-gradient(180deg, #fae0b0, #dfb778);
+            padding-top: 60px;
+        }
+        .hero-inner {
+            width: min(100%, 820px);
+            position: relative;
+            z-index: 2;
+            padding: 35px 20px;
+            border: 2px solid #b38234;
+            background: rgba(255, 248, 230, 0.95);
+            box-shadow: 0 22px 55px #56221b1c, inset 0 0 0 5px #fff9e880;
+            backdrop-filter: blur(4px);
+            border-radius: 6px;
+            animation: cardBreath 8s ease-in-out infinite;
+        }
+        @keyframes cardBreath {
+            0%, 100% { box-shadow: 0 22px 45px #56221b18, inset 0 0 0 5px #fff9e880; }
+            50%      { box-shadow: 0 27px 60px #56221b28, inset 0 0 0 5px #fff9e880; }
+        }
+        .hero-inner::before {
+            content: "✦";
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #b38234;
+            font-size: 1.4rem;
+        }
+        .hero-invite {
+            font-family: "Cinzel", serif;
+            font-size: 0.98rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #5c3531;
+            margin-bottom: 16px;
+            line-height: 1.6;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 600;
+        }
+        .hero-couple {
+            margin: 10px 0 24px;
+        }
+        .hero-name {
+            font-family: "Italianno", cursive;
+            font-size: clamp(4rem, 10vw, 6.8rem);
+            color: #8b1e24;
+            line-height: 1;
+            display: block;
+            text-shadow: 0 2px 4px rgba(139, 30, 36, 0.15);
+            animation: nameElegance 1.4s cubic-bezier(.18,.72,.25,1) both;
+        }
+        .hero-name:nth-of-type(1) { animation-delay: .15s; }
+        .hero-name:nth-of-type(2) { animation-delay: .4s; }
+        @keyframes nameElegance {
+            from { opacity: 0; transform: translateY(22px); filter: blur(4px); letter-spacing: .07em; }
+            to   { opacity: 1; transform: translateY(0); filter: blur(0); letter-spacing: normal; }
+        }
+        .hero-amp {
+            font-family: "Italianno", cursive;
+            font-size: 3rem;
+            color: #b38234;
+            margin: 5px 0;
+            display: block;
+            animation: ampFloat 4s ease-in-out infinite;
+        }
+        @keyframes ampFloat {
+            0%, 100% { transform: translateY(0); color: var(--gold); }
+            50%      { transform: translateY(-5px); color: #c9564d; }
+        }
+        .hero-parents {
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #5c3531;
+            margin-top: 8px;
+            display: block;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Decorative Corners / Floral Motifs */
+        .hero-corner {
+            position: absolute;
+            top: 0;
+            width: clamp(105px, 19vw, 190px);
+            height: clamp(135px, 24vw, 230px);
+            overflow: visible;
+            color: #a06e2a;
+            opacity: .9;
+            z-index: 1;
+            pointer-events: none;
+            filter: drop-shadow(0 4px 5px #a06e2a12);
+            transform-origin: top left;
+            animation: cornerFloat 7s ease-in-out infinite;
+        }
+        .hero-corner svg { display: none; }
+        .hero-corner::before {
+            content: "❧";
+            position: absolute;
+            top: -12px;
+            left: -8px;
+            font-family: Georgia, serif;
+            font-size: clamp(6rem, 15vw, 10rem);
+            line-height: 1;
+            color: #a06e2a90;
+            text-shadow: 0 2px 2px #fff7e8, 0 0 18px #d4af3720;
+        }
+        .hero-corner::after {
+            content: "✿";
+            position: absolute;
+            top: 32px;
+            left: 42px;
+            font-family: Georgia, serif;
+            font-size: 2.5rem;
+            color: #a83d38aa;
+            text-shadow: 0 2px 4px #a83d3820;
+            animation: flowerTurn 16s linear infinite;
+        }
+        .hero-corner-left { left: 0; }
+        .hero-corner-right { right: 0; transform: scaleX(-1); }
+        .hero-corner-right::before { left: auto; right: -8px; }
+        .hero-corner-right::after { left: auto; right: 42px; }
+        .hero-corner-left::after { animation: flowerTurn 24s linear infinite, flowerBreathe 4s ease-in-out infinite; }
+        .hero-corner-right::after { animation: flowerTurn 30s linear infinite reverse, flowerBreathe 5s ease-in-out infinite; }
+        @keyframes flowerBreathe {
+            0%, 100% { scale: 1; opacity: .72; }
+            50%      { scale: 1.13; opacity: 1; }
+        }
+        @keyframes cornerFloat {
+            0%, 100% { translate: 0 0; }
+            50% { translate: 0 -8px; }
+        }
+        @keyframes flowerTurn {
+            to { rotate: 360deg; }
+        }
+
+        /* Save the Date & Scratch Card */
+        .dates {
+            background: radial-gradient(ellipse at 50% 0%, #fff4d0, transparent 65%), linear-gradient(135deg, #e8c792, #d8ab62);
+            padding: 60px 20px;
+        }
+        .eyebrow { font-family: "Cinzel", serif; font-size: 0.95rem; letter-spacing: 0.25em; text-transform: uppercase; color: #785210; margin-bottom: 12px; font-weight: 600; }
+        
+        .scratch {
+            position: relative;
+            width: min(100%, 340px);
+            height: 90px;
+            background: #fff8e8;
+            border: 2px solid #b38234;
+            border-radius: 5px;
+            outline: 4px solid #fff5dc80;
+            outline-offset: 3px;
+            margin: 20px auto 30px;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 14px 35px #61391b20;
+            overflow: hidden;
+            transition: transform .35s ease, box-shadow .35s ease;
+        }
+        .scratch:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 42px #61391b2a;
+        }
+        .scratch-dates {
+            font-family: "Cinzel", serif;
+            font-size: clamp(1.1rem, 4vw, 1.55rem);
+            font-weight: 700;
+            color: #8b1e24;
+            letter-spacing: 2px;
+            animation: dateGlimmer 5s ease-in-out infinite;
+        }
+        @keyframes dateGlimmer {
+            0%, 100% { text-shadow: 0 0 0 transparent; }
+            50%      { text-shadow: 0 0 12px #d6ac4938; }
+        }
+        .scratch-foil {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            touch-action: none;
+            border-radius: 4px;
+            border: 1px solid #fff0b1;
+            background: repeating-linear-gradient(135deg, #bd9148 0 2px, #d7b65e 2px 4px);
+        }
+        .scratch-foil.scratched-away {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .65s ease;
+        }
+
+        /* Countdown */
+        .countdown { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 500px; margin: 0 auto; }
+        .countdown-units { display: flex; gap: 12px; }
+        .cd-unit {
+            background: linear-gradient(150deg, #fffdf6, #faebb8);
+            border: 1px solid #b38234;
+            padding: 12px 14px;
+            border-radius: 4px;
+            min-width: 70px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .cd-unit:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px #73451f22;
+        }
+        .cd-unit::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            height: 100%;
+            width: 75%;
+            background: linear-gradient(105deg, transparent, #ffffff90, transparent);
+            transform: skewX(-18deg);
+            animation: countdownShine 8s ease-in-out infinite;
+        }
+        .cd-unit:nth-child(2)::after { animation-delay: 1s; }
+        .cd-unit:nth-child(3)::after { animation-delay: 2s; }
+        .cd-unit:nth-child(4)::after { animation-delay: 3s; }
+        @keyframes countdownShine {
+            0%, 65%, 100% { left: -120%; }
+            35% { left: 150%; }
+        }
+        .cd-num { font-family: "Cinzel", serif; font-size: 1.8rem; font-weight: 700; color: #8b1e24; display: block; font-variant-numeric: tabular-nums; }
+        .cd-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #5c3531; margin-top: 4px; display: block; font-weight: 600; }
+        .countdown-label { font-size: 0.98rem; font-style: italic; color: #5c3531; margin-top: 8px; font-weight: 500; }
+
+        /* Passage dividers */
+        .passage {
+            position: relative;
+            height: 140px;
+            background: radial-gradient(ellipse at 50% 20%, #6a2528, transparent 70%), linear-gradient(180deg, #e8c792, #4b1418 62%, #210609);
+            display: grid;
+            place-items: center;
+            color: #fce883;
+            font-family: "Italianno", cursive;
+            font-size: 1.9rem;
+            overflow: hidden;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            background-size: 170% 170%;
+            animation: passageColour 16s ease-in-out infinite alternate;
+        }
+        @keyframes passageColour {
+            from { background-position: 0% 0%; }
+            to   { background-position: 100% 100%; }
+        }
+        .passage::before,
+        .passage::after {
+            content: "❧";
+            position: absolute;
+            top: 22%;
+            color: #fce883aa;
+            font-size: 3rem;
+            text-shadow: 0 0 15px #fce88330;
+            animation: passageSway 4s ease-in-out infinite;
+        }
+        .passage::before { left: 9%; }
+        .passage::after { right: 9%; transform: scaleX(-1); animation-delay: -2s; }
+        @keyframes passageSway {
+            50% { translate: 0 -7px; rotate: 5deg; }
+        }
+
+        /* Event Sections */
+        .event {
+            color: #fcefd3;
+            position: relative;
+        }
+        .sagan {
+            background: radial-gradient(ellipse at 50% 15%, #5a2025, transparent 60%), linear-gradient(180deg, #2c080c, #120204);
+        }
+        /* Mehndi Slide - Colourful & Vibrant (Emerald Green & Turmeric Gold) */
+        .haldi {
+            background: radial-gradient(circle at center, #1b4d27 0%, #081a0e 100%), linear-gradient(135deg, #235c30, #0f2e16);
+            color: #fffde7;
+        }
+        .wedding {
+            background: radial-gradient(ellipse at 50% 10%, #782b30, transparent 52%), linear-gradient(180deg, #451015, #190406);
+        }
+
+        .chapter-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 6px;
+            border: 1px solid #d4af3780;
+            padding: clamp(26px, 5vw, 48px) clamp(18px, 5vw, 45px);
+            box-shadow: 0 20px 55px #10020338;
+            backdrop-filter: blur(3px);
+            isolation: isolate;
+        }
+        .sagan .chapter-inner {
+            background: radial-gradient(ellipse at 50% 0%, #7c3238aa, transparent 68%), linear-gradient(145deg, #381217f5, #180608f8);
+            box-shadow: 0 22px 60px #0005, inset 0 0 35px #b74d3b0a;
+            border-color: #d4af376b;
+        }
+        .wedding .chapter-inner {
+            background: radial-gradient(ellipse at 50% 0%, #7c3238a6, transparent 65%), linear-gradient(145deg, #42151bf7, #1d060af9);
+            box-shadow: 0 22px 60px #0006;
+            border-color: #d4af376b;
+        }
+        /* Mehndi colourful inner box */
+        .haldi .chapter-inner {
+            background: radial-gradient(ellipse at 15% 0%, #467c3d55, transparent 50%), linear-gradient(145deg, rgba(20, 61, 31, 0.95), rgba(11, 36, 17, 0.98));
+            border: 2px solid #e8c45e;
+            color: #fffde7;
+            box-shadow: 0 22px 55px #06190b55, inset 0 0 40px #b5d66b0b;
+        }
+        .sagan .chapter-inner::before,
+        .wedding .chapter-inner::before,
+        .haldi .chapter-inner::before {
+            display: block;
+            font-family: Georgia, serif;
+            font-size: 2rem;
+            margin: 0 auto 8px;
+            color: var(--gold-light);
+            filter: drop-shadow(0 0 9px #d7ac5430);
+            animation: eventEmblem 4.5s ease-in-out infinite;
+        }
+        .sagan .chapter-inner::before { content: "✿"; }
+        .haldi .chapter-inner::before { content: "❀"; color: #fce883; }
+        .wedding .chapter-inner::before { content: "❦"; }
+        @keyframes eventEmblem {
+            0%, 100% { transform: translateY(0) rotate(-4deg) scale(1); }
+            50%      { transform: translateY(-5px) rotate(4deg) scale(1.09); }
+        }
+
+        .event-title {
+            font-family: "Cinzel", serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            color: var(--gold-light);
+            margin: 0 0 16px;
+            letter-spacing: 0.05em;
+            line-height: 1.25;
+            text-shadow: 0 2px 14px #d4af371c;
+        }
+        .sagan .event-title { text-shadow: 0 0 12px #e5c47625, 0 2px 3px #0002; }
+        .haldi .event-title { color: #ffe670; text-shadow: 0 0 18px #fce88330; }
+
+        .date-block {
+            font-family: "Cinzel", serif;
+            font-size: 1.25rem;
+            color: #fff;
+            margin: 16px 0 8px;
+            letter-spacing: 0.1em;
+        }
+        .haldi .date-block { color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+
+        .event-note {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 14px auto;
+            color: #f3e5ab;
+            max-width: 600px;
+        }
+        .haldi .event-note { color: #f5eed3; }
+
+        .event-note .address,
+        .address {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: .91rem;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .event .btn {
+            display: inline-block;
+            font-family: "Cinzel", serif;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 20px;
+            border: 1px solid #f5de9d;
+            background: linear-gradient(135deg, #dcb957, #f1d990);
+            color: #1a0406;
+            box-shadow: 0 8px 20px #07010135;
+            transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+        }
+        .event .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px #07010145;
+            filter: brightness(1.06);
+        }
+
+        /* Family & Venue Section */
+        .family-section {
+            background: radial-gradient(ellipse at 50% 10%, #653037, transparent 70%), linear-gradient(160deg, #341015, #1b0608);
+            color: #fcefd3;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            background-size: 160% 160%;
+        }
+        .family-section .eyebrow { animation: titleGlow 5s ease-in-out infinite; }
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 0 transparent; }
+            50%      { text-shadow: 0 0 15px #e4c16a45; }
+        }
+        .family-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .family-box {
+            border: 1px solid #d4af374d;
+            padding: 22px 18px;
+            background: #ffffff06;
+            border-radius: 6px;
+            backdrop-filter: blur(3px);
+            transition: transform .3s ease, border-color .3s ease, background .3s ease;
+        }
+        .family-box:hover {
+            transform: translateY(-4px);
+            border-color: #d4af37a8;
+            background: #ffffff0c;
+        }
+        .family-box h3 { font-family: "Cinzel", serif; color: var(--gold); font-size: 1.2rem; margin-bottom: 10px; text-shadow: 0 0 13px #d4af3720; }
+        .family-box p { font-size: 1.05rem; line-height: 1.6; color: #f3e5ab; }
+
+        /* Finale / Signoff */
+        .finale {
+            background: radial-gradient(ellipse at 50% 20%, #552024, transparent 65%), linear-gradient(180deg, #220609, #100203);
+            color: #fcefd3;
+            padding: 100px 20px;
+            text-align: center;
+            background-size: 160% 160%;
+        }
+        .signoff-script { font-family: "Italianno", cursive; font-size: 3.5rem; color: var(--gold-light); margin: 0 0 10px; text-shadow: 0 0 24px #e5c76e20; animation: signoffGlow 5s ease-in-out infinite; }
+        .signoff-families { font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; color: #d1a1a1; margin: 15px 0; line-height: 1.8; }
+        .signoff-names { font-family: "Cinzel", serif; font-size: 1.6rem; color: var(--gold); margin-top: 20px; letter-spacing: 0.1em; animation: signoffGlow 6s ease-in-out infinite; animation-delay: -3s; }
+        @keyframes signoffGlow {
+            0%, 100% { text-shadow: 0 0 8px #e5c76e10; transform: translateY(0); }
+            50%      { text-shadow: 0 0 23px #e5c76e35; transform: translateY(-3px); }
+        }
+
+        /* Festive Floating Particles */
+        .festive-particles {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: .65;
+        }
+        .festive-particle {
+            position: absolute;
+            top: -10%;
+            left: var(--x);
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff7db 0%, #e9c16b 48%, #c68d36 100%);
+            box-shadow: 0 0 9px #e2b95a60;
+            opacity: 0;
+            animation: festiveDrift var(--duration) var(--delay) linear infinite;
+        }
+        .sagan .festive-particle,
+        .wedding .festive-particle,
+        .finale .festive-particle { background: radial-gradient(circle, #fff0c3, #d9a548); }
+        .haldi .festive-particle { background: radial-gradient(circle, #fff4b0, #a6c565); }
+        @keyframes festiveDrift {
+            0%   { transform: translate3d(0, -2vh, 0) rotate(0); opacity: 0; }
+            12%  { opacity: .85; }
+            75%  { opacity: .55; }
+            100% { transform: translate3d(var(--drift), 110vh, 0) rotate(260deg); opacity: 0; }
+        }
+
+        /* Scroll-triggered entrance animations */
+        body.motion-ready .hero-inner,
+        body.motion-ready .chapter-inner,
+        body.motion-ready .dates > .eyebrow,
+        body.motion-ready .dates > .scratch,
+        body.motion-ready .dates > .countdown,
+        body.motion-ready .passage {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+        }
+        body.motion-ready .hero-inner.is-visible,
+        body.motion-ready .chapter-inner.is-visible,
+        body.motion-ready .dates > .eyebrow.is-visible,
+        body.motion-ready .dates > .scratch.is-visible,
+        body.motion-ready .dates > .countdown.is-visible,
+        body.motion-ready .passage.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Music Toggle Button */
+        .music-toggle {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            width: 50px; height: 50px;
+            background: linear-gradient(145deg, #932e36, #5c1118);
+            border: 2px solid #e0c16a;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            box-shadow: 0 7px 20px #16040650;
+            z-index: 999;
+            transition: transform 0.3s;
+        }
+        .music-toggle:hover { transform: scale(1.1); }
+        .music-toggle svg { width: 22px; height: 22px; fill: var(--gold-light); }
+
+        @media(max-width: 768px) {
+            #envelope-screen::before { letter-spacing: .4em; font-size: 1rem; }
+            .hero-inner { padding: 38px 16px 28px; }
+            .hero-corner { opacity: .55; }
+            .passage::before { left: 3%; }
+            .passage::after { right: 3%; }
+            .chapter::before { left: -35px; }
+            .chapter::after { right: -35px; }
+            .cd-unit { min-width: 61px; padding: 10px 7px; }
+        }
+        @media(prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="lock-scroll">
+
+    <!-- ================= SCREEN 1: ENVELOPE ================= -->
+    <div id="envelope-screen">
+        <div class="envelope-scene">
+            <button id="envelope" class="envelope" aria-label="Open wedding invitation">
+                <span class="envelope-back" aria-hidden="true">
+                    <svg viewBox="0 0 300 200" preserveAspectRatio="none">
+                        <rect width="300" height="200" rx="8" fill="#5c0f13" />
+                    </svg>
+                </span>
+                <span class="envelope-letter" aria-hidden="true">
+                    <span class="letter-flower">✿</span>
+                    <span class="letter-kicker">Wedding Invitation</span>
+                    <span class="letter-names">Vikas &amp; Sanjana</span>
+                    <span class="letter-date">26 NOVEMBER 2026</span>
+                    <span class="letter-flower">❦</span>
+                </span>
+                <span class="envelope-pocket" aria-hidden="true">
+                    <svg viewBox="0 0 300 200" preserveAspectRatio="none">
+                        <path d="M0 0 L147 106 Q152 110 147 114 L0 200 Z" fill="#7a1f26" />
+                        <path d="M300 0 L153 106 Q148 110 153 114 L300 200 Z" fill="#6b191f" />
+                        <path d="M0 200 L136 101 Q150 91 164 101 L300 200 Z" fill="#8b1e24" />
+                    </svg>
+                </span>
+                <span class="envelope-flap-wrap" aria-hidden="true">
+                    <span class="envelope-flap">
+                        <span class="flap-face flap-front">
+                            <svg viewBox="0 0 300 128" preserveAspectRatio="none">
+                                <path d="M8 0 H292 Q300 0 294 6 L164 116 Q150 128 136 116 L6 6 Q0 0 8 0 Z" fill="#9c222a" />
+                            </svg>
+                            <span class="wax-seal">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="flap-face flap-inside">
+                            <svg viewBox="0 0 300 128" preserveAspectRatio="none">
+                                <path d="M8 128 H292 Q300 128 294 122 L164 12 Q150 0 136 12 L6 122 Q0 128 8 128 Z" fill="#5c0f13" />
+                            </svg>
+                        </span>
+                    </span>
+                </span>
+            </button>
+            <div class="envelope-text">
+                <p class="envelope-pretext">You are cordially invited</p>
+                <p class="envelope-caption">Vikas &amp; Sanjana</p>
+                <p class="envelope-hint">Tap envelope to open</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SCREEN 2: MAIN INVITATION ================= -->
+    <main id="main">
+
+        <!-- 1. HERO / COVER SECTION -->
+        <section id="top" class="chapter hero">
+            <div class="hero-corner hero-corner-left" aria-hidden="true"></div>
+            <div class="hero-corner hero-corner-right" aria-hidden="true"></div>
+
+            <div class="hero-inner">
+                <div style="font-family:'Noto Serif Devanagari',serif; font-size:1.9rem; color:#8b1e24; margin-bottom:8px; font-weight: 600;">ॐ श्री गणेशाय नमः</div>
+                <p class="hero-invite">SATKARTAR KARTA GURPARKAR</p>
+                
+                <p class="hero-invite" style="margin-top:15px; max-width:650px; line-height:1.7; font-size:1.02rem;">
+                    Smt. Roop Rani<br>
+                    <span style="font-size:0.85rem; font-style:italic; font-weight:400;">(W/o Late Sh. Hazara Singh)</span><br><br>
+                    request the pleasure of your company on the auspicious occasion of the<br>
+                    <strong style="font-size:1.25rem; color:#8b1e24; font-family:'Cinzel',serif;">MARRIAGE CEREMONY</strong><br>
+                    of her grandson
+                </p>
+
+                <h1 class="hero-couple">
+                    <span class="hero-name">Vikas</span>
+                    <span class="hero-parents">(S/o Mrs. Monika &amp; Mr. Ashok Kumar Chugh)</span>
+                    <span class="hero-amp">with</span>
+                    <span class="hero-name">Sanjana</span>
+                    <span class="hero-parents">(Grand D/o Smt. Savitri &amp; Sh. D. S. Topwal)<br>(D/o Mrs. Rajni &amp; Mr. Sanjay Topwal)</span>
+                </h1>
+
+                <p class="hero-invite" style="margin-top:10px;">as per programme</p>
+            </div>
+        </section>
+
+        <!-- 2. SAVE THE DATES & COUNTDOWN -->
+        <section id="dates" class="chapter dates">
+            <p class="eyebrow">Save The Date</p>
+            <div class="scratch" id="scratch">
+                <p class="scratch-dates">26 • 11 • 2026</p>
+                <canvas class="scratch-foil" id="scratch-foil" width="340" height="90" aria-label="Scratch to reveal date"></canvas>
+            </div>
+            <div class="countdown" id="countdown">
+                <div class="countdown-units">
+                    <div class="cd-unit"><span class="cd-num" id="days">00</span><span class="cd-label">Days</span></div>
+                    <div class="cd-unit"><span class="cd-num" id="hours">00</span><span class="cd-label">Hours</span></div>
+                    <div class="cd-unit"><span class="cd-num" id="minutes">00</span><span class="cd-label">Mins</span></div>
+                    <div class="cd-unit"><span class="cd-num" id="seconds">00</span><span class="cd-label">Secs</span></div>
+                </div>
+                <p class="countdown-label">Until the auspicious celebrations begin</p>
+            </div>
+        </section>
+
+        <div class="passage">✦ &nbsp; The Celebrations &nbsp; ✦</div>
+
+        <!-- 3. SAGAN CEREMONY -->
+        <section id="sagan" class="chapter event sagan">
+            <div class="chapter-inner">
+                <h2 class="event-title">Sagan Ceremony</h2>
+                <div class="date-block">Tuesday, 24th November 2026</div>
+                <p class="event-note">
+                    <strong>Time:</strong> 11:00 AM onwards (followed by Lunch)<br>
+                    <strong>Venue:</strong> The Oliver Spaces<br>
+                    <span class="address">A-143, Mayapuri Industrial Area, Phase-II, New Delhi – 110064</span>
+                </p>
+                <a href="https://maps.google.com/?q=The+Oliver+Spaces+Mayapuri+Phase-2+New+Delhi" target="_blank" class="btn">View Location</a>
+            </div>
+        </section>
+
+        <div class="passage">✦ &nbsp; Mehendi Ki Raat &nbsp; ✦</div>
+
+        <!-- 4. MEHNDI (COLOURFUL & VIBRANT) -->
+        <section id="mehndi" class="chapter event haldi">
+            <div class="chapter-inner">
+                <h2 class="event-title">Mehndi</h2>
+                <div class="date-block">Wednesday, 25th November 2026</div>
+                <p class="event-note">
+                    <strong>Time:</strong> 7:00 PM onwards<br>
+                    <strong>Venue:</strong> Residence<br>
+                    <span class="address">15/23, Subhash Nagar, New Delhi – 110027</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="passage">✦ &nbsp; The Wedding Day &nbsp; ✦</div>
+
+        <!-- 5. WEDDING CEREMONY -->
+        <section id="wedding" class="chapter event wedding">
+            <div class="chapter-inner">
+                <h2 class="event-title">Wedding Ceremony</h2>
+                <div class="date-block">Thursday, 26th November 2026</div>
+                <p class="event-note">
+                    <strong>Departure of Barat:</strong> 4:00 PM<br>
+                    <strong>Venue:</strong> Crowne Plaza<br>
+                    <span class="address">District Centre, 13B, Mayur Place, Mayur Vihar, New Delhi – 110091</span>
+                </p>
+                <a href="https://maps.google.com/?q=Crowne+Plaza+Mayur+Vihar+New+Delhi" target="_blank" class="btn">View Location</a>
+            </div>
+        </section>
+
+        <!-- 6. FAMILY & RSVP -->
+        <section class="family-section">
+            <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
+                <p class="eyebrow">With Best Compliments &amp; Warm Regards</p>
+                <h2 style="font-family:'Cinzel',serif; font-size:2.2rem; color:var(--gold-light); margin-bottom:20px;">R. S. V. P.</h2>
+                <div class="family-groups">
+                    <div class="family-box">
+                        <h3>Hosting Families</h3>
+                        <p>Chugh Family &middot; Bajaj Family<br>Khanna Family &middot; Kawatra Family</p>
+                    </div>
+                    <div class="family-box">
+                        <h3>Well Wishes</h3>
+                        <p>All Relatives &amp; Friends</p>
+                    </div>
+                </div>
+                <div style="margin-top:40px; padding:20px; border-top:1px solid rgba(212,175,55,0.3); border-bottom:1px solid rgba(212,175,55,0.3);">
+                    <p style="font-family:'Cinzel',serif; font-size:1.1rem; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase;">Chief Guest</p>
+                    <p style="font-size:1.4rem; font-weight:600; color:#fff; margin-top:5px;">Purvang Khanna</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. FINALE -->
+        <section class="chapter finale">
+            <div style="max-width: 600px; margin: 0 auto; position: relative; z-index: 2;">
+                <p class="signoff-script">We await your gracious presence</p>
+                <p class="signoff-families">To celebrate the union of our families</p>
+                <p class="signoff-names">Vikas &amp; Sanjana</p>
+                <p style="font-size:0.85rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-top:40px;">November 2026 &middot; New Delhi</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Music Toggle Button & Audio Tag -->
+    <button id="music-toggle" class="music-toggle" type="button" aria-label="Toggle music">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+    </button>
+    <audio id="bg-audio" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        (() => {
+            "use strict";
+            const envelopeScreen = document.getElementById("envelope-screen");
+            const envelope = document.getElementById("envelope");
+            const audio = document.getElementById("bg-audio");
+            const musicToggle = document.getElementById("music-toggle");
+            let opened = false;
+            let scratching = false;
+            let scratchFinished = false;
+
+            /* ENVELOPE OPENING */
+            async function playAudioSafe() {
+                try {
+                    await audio.play();
+                    musicToggle.style.opacity = "1";
+                    musicToggle.setAttribute("aria-pressed", "true");
+                    musicToggle.setAttribute("aria-label", "Pause background music");
+                } catch (error) {
+                    musicToggle.style.opacity = ".7";
+                    musicToggle.setAttribute("aria-pressed", "false");
+                    musicToggle.setAttribute("aria-label", "Play background music");
+                }
+            }
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+                envelope.classList.add("opened");
+                
+                playAudioSafe();
+
+                window.setTimeout(() => {
+                    envelopeScreen.classList.add("fade-out");
+                    document.body.classList.remove("lock-scroll");
+                    document.body.classList.add("motion-ready");
+                    initScrollTransitions();
+                    window.setTimeout(() => {
+                        envelopeScreen.style.display = "none";
+                    }, 950);
+                }, 700);
+            });
+
+            musicToggle.addEventListener("click", async () => {
+                if (audio.paused) {
+                    await playAudioSafe();
+                } else {
+                    audio.pause();
+                    musicToggle.style.opacity = ".7";
+                    musicToggle.setAttribute("aria-pressed", "false");
+                    musicToggle.setAttribute("aria-label", "Play background music");
+                }
+            });
+
+            /* SCROLL-TRIGGERED REVEALS */
+            function initScrollTransitions() {
+                const targets = document.querySelectorAll(
+                    ".hero-inner, .chapter-inner, " +
+                    ".dates > .eyebrow, .dates > .scratch, " +
+                    ".dates > .countdown, .passage"
+                );
+                if (!("IntersectionObserver" in window)) {
+                    targets.forEach(el => el.classList.add("is-visible"));
+                    return;
+                }
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -35px 0px"
+                });
+                targets.forEach(el => observer.observe(el));
+            }
+
+            /* SCRATCH CARD */
+            const canvas = document.getElementById("scratch-foil");
+            const ctx = canvas.getContext("2d", { willReadFrequently: true });
+            let dpr = 1;
+            let lastScratchCheck = 0;
+
+            function drawScratchLayer() {
+                if (scratchFinished) return;
+                const rect = canvas.getBoundingClientRect();
+                if (!rect.width || !rect.height) return;
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                canvas.width = Math.round(rect.width * dpr);
+                canvas.height = Math.round(rect.height * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                ctx.globalCompositeOperation = "source-over";
+                const gradient = ctx.createLinearGradient(0, 0, rect.width, rect.height);
+                gradient.addColorStop(0, "#f2d98f");
+                gradient.addColorStop(.35, "#bd9148");
+                gradient.addColorStop(.7, "#e3c16b");
+                gradient.addColorStop(1, "#ad7c31");
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, rect.width, rect.height);
+                ctx.strokeStyle = "#fff0bd";
+                ctx.lineWidth = 1;
+                ctx.strokeRect(5, 5, rect.width - 10, rect.height - 10);
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillStyle = "#fff2cb";
+                ctx.font = "600 14px Jost, sans-serif";
+                ctx.fillText("✦  SCRATCH TO REVEAL  ✦", rect.width / 2, rect.height / 2);
+            }
+
+            function scratchAt(event) {
+                if (!scratching || scratchFinished) return;
+                event.preventDefault();
+                const rect = canvas.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                ctx.globalCompositeOperation = "destination-out";
+                ctx.beginPath();
+                ctx.arc(x, y, 19, 0, Math.PI * 2);
+                ctx.fill();
+                const now = performance.now();
+                if (now - lastScratchCheck > 250) {
+                    lastScratchCheck = now;
+                    assessScratchProgress();
+                }
+            }
+
+            function assessScratchProgress() {
+                if (scratchFinished) return;
+                try {
+                    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                    let transparent = 0;
+                    let sampled = 0;
+                    for (let pixel = 0; pixel < pixels.length / 4; pixel += 32) {
+                        sampled++;
+                        if (pixels[pixel * 4 + 3] < 25) transparent++;
+                    }
+                    const percent = sampled ? transparent / sampled : 0;
+                    if (percent >= .43) revealDates();
+                } catch (error) {}
+            }
+
+            function revealDates() {
+                if (scratchFinished) return;
+                scratchFinished = true;
+                scratching = false;
+                canvas.classList.add("scratched-away");
+            }
+
+            canvas.addEventListener("pointerdown", event => {
+                if (scratchFinished) return;
+                scratching = true;
+                try { canvas.setPointerCapture(event.pointerId); } catch (error) {}
+                scratchAt(event);
+            });
+            canvas.addEventListener("pointermove", scratchAt);
+            canvas.addEventListener("pointerup", () => {
+                scratching = false;
+                assessScratchProgress();
+            });
+            canvas.addEventListener("pointercancel", () => { scratching = false; });
+            canvas.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    revealDates();
+                }
+            });
+
+            let resizeTimer;
+            window.addEventListener("resize", () => {
+                window.clearTimeout(resizeTimer);
+                resizeTimer = window.setTimeout(drawScratchLayer, 150);
+            });
+            drawScratchLayer();
+
+            /* COUNTDOWN — INDIA STANDARD TIME */
+            const weddingDate = new Date("2026-11-26T00:00:00+05:30").getTime();
+            function updateCountdown() {
+                let distance = weddingDate - Date.now();
+                if (distance <= 0) {
+                    ["days", "hours", "minutes", "seconds"].forEach(id => {
+                        document.getElementById(id).textContent = "00";
+                    });
+                    const label = document.querySelector(".countdown-label");
+                    if (label) label.textContent = "The auspicious day is here!";
+                    return;
+                }
+                const days = Math.floor(distance / 86400000);
+                distance %= 86400000;
+                const hours = Math.floor(distance / 3600000);
+                distance %= 3600000;
+                const minutes = Math.floor(distance / 60000);
+                const seconds = Math.floor((distance % 60000) / 1000);
+                document.getElementById("days").textContent = String(days);
+                document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+                document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+                document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+            }
+            updateCountdown();
+            window.setInterval(updateCountdown, 1000);
+        })();
+
+        /* Festive Floating Particles */
+        (() => {
+            "use strict";
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (reducedMotion) return;
+            const sections = document.querySelectorAll(".chapter, .passage");
+            sections.forEach((section, sectionIndex) => {
+                if (section.querySelector(".festive-particles")) return;
+                const layer = document.createElement("div");
+                layer.className = "festive-particles";
+                layer.setAttribute("aria-hidden", "true");
+                const total = window.innerWidth < 600 ? 7 : 12;
+                for (let i = 0; i < total; i++) {
+                    const particle = document.createElement("span");
+                    particle.className = "festive-particle";
+                    particle.style.setProperty("--x", `${(i * 37 + sectionIndex * 13) % 96 + 2}%`);
+                    particle.style.setProperty("--delay", `${-((i * 1.7 + sectionIndex) % 15)}s`);
+                    particle.style.setProperty("--duration", `${12 + ((i * 3 + sectionIndex) % 10)}s`);
+                    particle.style.setProperty("--size", `${3 + ((i + sectionIndex) % 3)}px`);
+                    particle.style.setProperty("--drift", `${(i % 2 ? 1 : -1) * (15 + (i * 7) % 36)}px`);
+                    layer.appendChild(particle);
+                }
+                section.appendChild(layer);
+            });
+        })();
+    </script>
+</body>
+</html>
